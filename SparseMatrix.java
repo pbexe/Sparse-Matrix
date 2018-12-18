@@ -199,6 +199,7 @@ public class SparseMatrix {
 				int val = sc.nextInt();
 				
 				// Add your code here to add the element into data member entries
+				entries.add(new Entry(col + row * numCols, val));
 			}
 			
 			// Add your code here for sorting non-zero elements
