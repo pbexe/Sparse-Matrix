@@ -181,6 +181,47 @@ public class SparseMatrix {
 		}
 	}
 	
+	private ArrayList<Entry> mergesort(ArrayList<Entry> D){
+		if (D.size() == 1) {
+			return D;
+		}
+		int mid = Math.floorDiv(D.size(), 2);
+		ArrayList<Entry> A = new ArrayList<Entry>(D.subList(0, mid));
+		ArrayList<Entry> B = new ArrayList<Entry>(D.subList(mid, D.size()));
+		A = mergesort(A);
+		B = mergesort(B);
+		return merge(A, B);
+	}
+
+	
+	private ArrayList<Entry> merge(ArrayList<Entry> A, ArrayList<Entry> B){
+		int i = 0;
+		int j = 0;
+		int k = 0;
+		ArrayList<Entry> C = new ArrayList<Entry>();
+		for (int x = 0; x < (A.size() + B.size()); x++) {
+			C.add(null);
+		}
+		while (i < A.size() && j < B.size()){
+			if (A.get(i).getPosition() < B.get(j).getPosition()){
+				C.set(k, A.get(i));
+				i++; k++;
+			} else {
+				C.set(k, B.get(j));
+				j++; k++;
+			}
+		}
+		while (i < A.size()) {
+			C.set(k, A.get(i));
+			i++; k++;
+		}
+		while (j < B.size()) {
+			C.set(k, B.get(j));
+			j++; k++;
+		}
+		return C;
+	}	
+
 	// Loading matrix entries from a text file
 	// You need to complete this implementation
 	public void loadEntries(String filename) {
@@ -203,7 +244,12 @@ public class SparseMatrix {
 			}
 			
 			// Add your code here for sorting non-zero elements
-			
+
+			entries = mergesort(entries);
+
+			for (Entry e : entries) {
+				System.out.println(e.getPosition());
+			}
 			
 		} catch (Exception e) {
 			e.printStackTrace();
