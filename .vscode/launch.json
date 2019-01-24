@@ -4,6 +4,7 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
+
         {
             "type": "java",
             "name": "Debug (Launch) - Current File",
@@ -12,7 +13,7 @@
         },
         {
             "type": "java",
-            "name": "Debug (Launch)-SparseMatrix - Matric Info",
+            "name": "Debug (Launch)-SparseMatrix - Matrix Info",
             "request": "launch",
             "mainClass": "SparseMatrix",
             "args": "-i ./data/MatrixInfo.txt"
