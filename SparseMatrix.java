@@ -246,10 +246,6 @@ public class SparseMatrix {
 			// Add your code here for sorting non-zero elements
 
 			entries = mergesort(entries);
-
-			for (Entry e : entries) {
-				System.out.println(e.getPosition());
-			}
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -307,10 +303,20 @@ public class SparseMatrix {
 	public SparseMatrix add(SparseMatrix M) {
 		// Add your code here
 	}
-	
+
 	// Transposing a matrix
 	public SparseMatrix transpose() {
-		// Add your code here
+		SparseMatrix t = new SparseMatrix();
+		t.numCols = numRows;
+		t.numRows = numCols;
+		t.entries = new ArrayList<Entry>();
+		for (Entry e : entries) {
+			int x = e.getPosition() % numCols;
+			int y = e.getPosition() / numCols;
+			t.entries.add(new Entry(y + x * t.numCols, e.getValue()));
+		}
+		t.entries = mergesort(t.entries);
+		return t;
 	}
 	
 	// Matrix-vector multiplication
