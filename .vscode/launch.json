@@ -17,6 +17,20 @@
             "request": "launch",
             "mainClass": "SparseMatrix",
             "args": "-i ./data/MatrixInfo.txt"
-        }
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-SparseMatrix - Print Matrix",
+            "request": "launch",
+            "mainClass": "SparseMatrix",
+            "args": "-r ./data/MatrixRead.txt"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-SparseMatrix - Transpose Matrix",
+            "request": "launch",
+            "mainClass": "SparseMatrix",
+            "args": "-t ./data/MatrixTranspose.txt"
+        },
     ]
 }
