@@ -320,7 +320,7 @@ public class SparseMatrix {
 	
 	// Return the number of non-zeros
 	public int numNonZeros() {
-		// Add your code here
+		return entries.size();
 	}
 	
 	// Multiply the matrix by a scalar, and update the matrix elements
