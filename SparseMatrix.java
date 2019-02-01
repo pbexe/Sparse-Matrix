@@ -301,7 +301,45 @@ public class SparseMatrix {
 	
 	// Adding two matrices
 	public SparseMatrix add(SparseMatrix M) {
-		// Add your code here
+		SparseMatrix total = new SparseMatrix();
+		total.entries = new ArrayList<Entry>();
+		total.numCols = numCols;
+		total.numRows = numRows;
+
+		// Shallow copy lists to not affect the originals
+		ArrayList<Entry> a = new ArrayList<Entry>(entries);
+		ArrayList<Entry> b = new ArrayList<Entry>(M.entries);
+
+		while (a.size() > 0 && b.size() > 0) {
+			if (a.get(0).getPosition() == b.get(0).getPosition()) {
+				Entry e = new Entry(a.get(0).getPosition(), a.get(0).getValue() + b.get(0).getValue());
+				total.entries.add(e);
+				a.remove(0); b.remove(0);
+			} else if (a.get(0).getPosition() < b.get(0).getPosition()){
+				Entry e = new Entry(a.get(0).getPosition(), a.get(0).getValue());
+				total.entries.add(e);
+				a.remove(0);
+			} else {
+				Entry e = new Entry(b.get(0).getPosition(), b.get(0).getValue());
+				total.entries.add(e);
+				b.remove(0);
+			}
+		}
+
+		while (a.size() > 0){
+			Entry e = new Entry(a.get(0).getPosition(), a.get(0).getValue());
+			total.entries.add(e);
+			a.remove(0);
+		}
+
+		while (b.size() > 0){
+			Entry e = new Entry(b.get(0).getPosition(), b.get(0).getValue());
+			total.entries.add(e);
+			b.remove(0);
+		}
+
+		total.entries = mergesort(total.entries);
+		return total;
 	}
 
 	// Transposing a matrix
