@@ -373,6 +373,7 @@ public class SparseMatrix {
 		for (Entry e : entries) {
 			e.setValue(e.getValue() * scalar);
 		}
+		entries = mergesort(entries);
 	}
 	
 	// Number of rows of the matrix
