@@ -360,6 +360,7 @@ public class SparseMatrix {
 	// Matrix-vector multiplication
 	public DenseVector multiply(DenseVector v) {
 		// Add your code here
+		return null;
 	}
 	
 	// Return the number of non-zeros
@@ -369,7 +370,9 @@ public class SparseMatrix {
 	
 	// Multiply the matrix by a scalar, and update the matrix elements
 	public void multiplyBy(int scalar) {
-		// Add your code here
+		for (Entry e : entries) {
+			e.setValue(e.getValue() * scalar);
+		}
 	}
 	
 	// Number of rows of the matrix
