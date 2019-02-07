@@ -306,39 +306,35 @@ public class SparseMatrix {
 		total.numCols = numCols;
 		total.numRows = numRows;
 
-		// Shallow copy lists to not affect the originals
-		ArrayList<Entry> a = new ArrayList<Entry>(entries);
-		ArrayList<Entry> b = new ArrayList<Entry>(M.entries);
-
-		while (a.size() > 0 && b.size() > 0) {
-			if (a.get(0).getPosition() == b.get(0).getPosition()) {
-				Entry e = new Entry(a.get(0).getPosition(), a.get(0).getValue() + b.get(0).getValue());
+		int i = 0;
+		int j = 0;
+		while (entries.size() > i && M.entries.size() > j) {
+			if (entries.get(i).getPosition() == M.entries.get(j).getPosition()) {
+				Entry e = new Entry(entries.get(i).getPosition(), entries.get(i).getValue() + M.entries.get(j).getValue());
 				total.entries.add(e);
-				a.remove(0); b.remove(0);
-			} else if (a.get(0).getPosition() < b.get(0).getPosition()){
-				Entry e = new Entry(a.get(0).getPosition(), a.get(0).getValue());
+				i++;j++;
+			} else if (entries.get(i).getPosition() < M.entries.get(j).getPosition()){
+				Entry e = new Entry(entries.get(i).getPosition(), entries.get(i).getValue());
 				total.entries.add(e);
-				a.remove(0);
+				i++;
 			} else {
-				Entry e = new Entry(b.get(0).getPosition(), b.get(0).getValue());
+				Entry e = new Entry(M.entries.get(j).getPosition(), M.entries.get(j).getValue());
 				total.entries.add(e);
-				b.remove(0);
+				j++;
 			}
 		}
 
-		while (a.size() > 0){
-			Entry e = new Entry(a.get(0).getPosition(), a.get(0).getValue());
+		while (entries.size() > i){
+			Entry e = new Entry(entries.get(i).getPosition(), entries.get(i).getValue());
 			total.entries.add(e);
-			a.remove(0);
+			i++;
 		}
 
-		while (b.size() > 0){
-			Entry e = new Entry(b.get(0).getPosition(), b.get(0).getValue());
+		while (M.entries.size() > j){
+			Entry e = new Entry(M.entries.get(j).getPosition(), M.entries.get(j).getValue());
 			total.entries.add(e);
-			b.remove(0);
+			j++;
 		}
-
-		total.entries = mergesort(total.entries);
 		return total;
 	}
 
@@ -359,8 +355,12 @@ public class SparseMatrix {
 	
 	// Matrix-vector multiplication
 	public DenseVector multiply(DenseVector v) {
-		// Add your code here
-		return null;
+		// DenseVector result = new DenseVector(v.size());
+
+		// for (type var : iterable) {
+			
+		// }
+		return v;
 	}
 	
 	// Return the number of non-zeros
@@ -394,7 +394,7 @@ public class SparseMatrix {
 		
 		for (int i = 0; i < entries.size(); ++i) {
 			int nonzero_pos = entries.get(i).getPosition();
-			
+
 			while (pos <= nonzero_pos) {
 				if (pos < nonzero_pos) {
 					System.out.print("0 ");
