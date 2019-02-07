@@ -356,9 +356,7 @@ public class SparseMatrix {
 	// Matrix-vector multiplication
 	public DenseVector multiply(DenseVector v) {
 		// DenseVector result = new DenseVector(v.size());
-
 		// for (type var : iterable) {
-			
 		// }
 		return v;
 	}

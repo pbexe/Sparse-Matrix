@@ -38,5 +38,12 @@
             "mainClass": "SparseMatrix",
             "args": "-a ./data/MatrixAdd1.txt ./data/MatrixAdd2.txt"
         },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-SparseMatrix - Multiply Matrix",
+            "request": "launch",
+            "mainClass": "SparseMatrix",
+            "args": "-v ./data/MatrixMultiply.txt ./data/VectorMultiply.txt"
+        },
     ]
 }
