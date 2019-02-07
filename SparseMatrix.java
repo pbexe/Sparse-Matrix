@@ -355,10 +355,22 @@ public class SparseMatrix {
 	
 	// Matrix-vector multiplication
 	public DenseVector multiply(DenseVector v) {
-		// DenseVector result = new DenseVector(v.size());
-		// for (type var : iterable) {
-		// }
-		return v;
+		DenseVector r = new DenseVector(this.numRows);		
+		int total;
+		for (int i = 0; i < r.size(); i++) {
+			total = 0;
+			for (int j = 0; j < v.size(); j++) {
+				for (Entry e : entries) {
+					int x = e.getPosition() % numCols;
+					int y = e.getPosition() / numCols;
+					if (x == j && y == i) {
+						total += e.getValue() * v.getElement(j);
+					}
+				}
+			}
+			r.setElement(i, total);
+		}
+		return r;
 	}
 	
 	// Return the number of non-zeros
