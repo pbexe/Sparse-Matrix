@@ -1,0 +1,12 @@
+Efficiency Report
+=================
+
+
+Sorting non-zero elements within the method loadEntries
+-------------------------------------------------------
+To sort the non-zero elements, I chose to use a merge sort. This has an efficiency of O(n log n) for n non-zero elements. This is because to split the data, it will take n operations. Once the data is split, every merge halves the number of lists being merged. It takes log(n) operations to fully merge all of the data, thus resulting in a total efficiency of O(n log n).
+
+
+Adding two matrices within the method add
+-----------------------------------------
+The addition method has a worse case efficiency of O(n1 + n2) where n1 and n2 are the number of non-zero elements in each of the matrices. This is because in the worst case, the first loop will loop through all of the elements in one of the matrices and none in the other matrix. There is then a for loop after the while loop that will finish looping though any elements that have not been iterated over, thus resulting in every non-zero element being looped over once ie: O(n1 + n2).
